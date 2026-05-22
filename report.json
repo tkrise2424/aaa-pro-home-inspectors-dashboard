@@ -144,7 +144,7 @@
       "id": 1,
       "severity": "info",
       "title": "Home Inspection Buyers \u2014 585 Contacts Queued, Largest Pipeline",
-      "detail": "665 total members with 585 not yet started \u2014 the single largest pipeline across all sequences. 145 unique opens at 64.44% open rate from 225 sends. Currently paused per client request; when reactivated this represents significant outreach potential."
+      "detail": "665 total members with 585 not yet started \u2014 the single largest pipeline across all sequences. 145 unique opens at 64.44% open rate from 225 sends. Currently paused per client request."
     },
     {
       "id": 2,
@@ -161,14 +161,14 @@
     {
       "id": 4,
       "severity": "warning",
-      "title": "All 3 Sequences Paused \u2014 Client Review In Progress",
+      "title": "All 3 Sequences Paused \u2014 Client Data Review In Progress",
       "detail": "All sequences are currently paused at client request while performance data is being reviewed. Zero active outreach is occurring as of this report period."
     },
     {
       "id": 5,
       "severity": "neutral",
-      "title": "Zero Replies or Bookings \u2014 Messaging May Need Refinement",
-      "detail": "Across 732 sends with 607 opens, zero replies or bookings have been generated. Strong open rates with no downstream action suggests the CTA or message body may need adjustment."
+      "title": "No Replies or Bookings Recorded",
+      "detail": "Across 732 sends with 607 opens, no replies or bookings have been recorded. With campaigns currently paused, this will be monitored once the client is ready to resume outreach."
     },
     {
       "id": 6,
