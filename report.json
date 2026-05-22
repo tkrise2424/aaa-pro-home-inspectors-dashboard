@@ -4,19 +4,19 @@
     "companyId": "amdcypjqmfvobos9",
     "reportNumber": 2,
     "periodLabel": "30-Day Interim Report",
-    "periodStart": "2026-04-23",
-    "periodEnd": "2026-05-22",
+    "periodStart": "4/23/2026",
+    "periodEnd": "5/22/2026",
     "periodDays": 30,
-    "generated": "2026-05-22T18:41:00-04:00",
-    "baselinePeriod": "2025-11-26 to 2026-04-22 (Report #1)",
-    "status": "1 ACTIVE + 2 PAUSED \u2014 PENDING CLIENT DATA REVIEW",
+    "generated": "5/22/2026",
+    "baselinePeriod": "11/26/2025 \u2013 4/22/2026 (Report #1)",
+    "status": "ALL SEQUENCES PAUSED \u2014 PENDING CLIENT DATA REVIEW",
     "prosp": false,
     "dashboardUrl": "http://aaa-pro-home-inspectors.mercenarymarketing.ai/"
   },
   "overview": {
     "totalSequences": 3,
-    "activeSequences": 1,
-    "pausedSequences": 2,
+    "activeSequences": 0,
+    "pausedSequences": 3,
     "totalMembers": 851,
     "completedMembers": 181,
     "inProgressMembers": 85,
@@ -35,7 +35,7 @@
   },
   "comparison": {
     "baseline": {
-      "period": "11/26/25 \u2013 4/22/26",
+      "period": "11/26/2025 \u2013 4/22/2026",
       "contactsAdded": 851,
       "outreachSent": 626,
       "sequenceTriggers": 626,
@@ -47,7 +47,7 @@
       "activeSequences": 3
     },
     "current": {
-      "period": "4/23/26 \u2013 5/22/26",
+      "period": "4/23/2026 \u2013 5/22/2026",
       "completedMembers": 181,
       "inProgress": 85,
       "notStarted": 585,
@@ -57,7 +57,7 @@
       "bounces": 22,
       "replies": 0,
       "bookings": 0,
-      "activeSequences": 1
+      "activeSequences": 0
     },
     "periodDelta": {
       "completedMembers": 74,
@@ -68,14 +68,14 @@
       "bouncesPct": "0%",
       "replies": 0,
       "bookings": 0,
-      "activeSequences": -2
+      "activeSequences": -3
     }
   },
   "sequences": [
     {
       "name": "Home Inspection Buyers Sequence",
       "id": "b6d0c8cb-c0c1-4168-8d61-0475dfd8780f",
-      "status": "active",
+      "status": "paused",
       "steps": 3,
       "members": 665,
       "completed": 39,
@@ -91,8 +91,8 @@
       "bounceRate": 6.22,
       "ooo": 0,
       "bookings": 0,
-      "created": "2026-03-19",
-      "note": "Only active sequence. 585 contacts queued, 64.44% open rate on 225 sent."
+      "created": "3/19/2026",
+      "note": "585 contacts queued. Paused per client request. 64.44% open rate on 225 sent."
     },
     {
       "name": "Real Estate Agent Referral Sequence",
@@ -113,7 +113,7 @@
       "bounceRate": 1.5,
       "ooo": 0,
       "bookings": 0,
-      "created": "2026-03-19",
+      "created": "3/19/2026",
       "note": "Highest open rate (91.73%). Paused per client request."
     },
     {
@@ -135,16 +135,16 @@
       "bounceRate": 1.66,
       "ooo": 2,
       "bookings": 0,
-      "created": "2026-03-30",
-      "note": "Strongest click engagement (4.15% CR). Apollo-sourced."
+      "created": "3/30/2026",
+      "note": "Strongest click engagement (4.15% CR). Apollo-sourced. Paused per client request."
     }
   ],
   "insights": [
     {
       "id": 1,
       "severity": "info",
-      "title": "Home Inspection Buyers \u2014 Only Active Sequence, 585 Contacts Queued",
-      "detail": "665 total members with 585 not yet started \u2014 the largest pipeline by far. 145 unique opens at 64.44% open rate from 225 sends. This is the only sequence currently running."
+      "title": "Home Inspection Buyers \u2014 585 Contacts Queued, Largest Pipeline",
+      "detail": "665 total members with 585 not yet started \u2014 the single largest pipeline across all sequences. 145 unique opens at 64.44% open rate from 225 sends. Currently paused per client request; when reactivated this represents significant outreach potential."
     },
     {
       "id": 2,
@@ -155,14 +155,14 @@
     {
       "id": 3,
       "severity": "positive",
-      "title": "Apollo-Sourced Variant Shows Strongest Click Engagement",
-      "detail": "The Apollo variant delivers a 4.15% click rate (10 unique clicks) vs 0.75% on the original referral (2 clicks). The Apollo-sourced list is driving measurably higher engagement."
+      "title": "Apollo-Sourced Contacts Show Strongest Click Engagement",
+      "detail": "The Apollo variant delivers a 4.15% click rate (10 unique clicks) vs 0.75% on the original referral (2 clicks). The Apollo-sourced contact list is driving measurably higher engagement."
     },
     {
       "id": 4,
       "severity": "warning",
-      "title": "2 of 3 Sequences Paused \u2014 Client Awaiting Data Review",
-      "detail": "Both Real Estate Agent Referral sequences are paused at client request. A review call is needed before reactivation. Only Home Inspection Buyers is currently running."
+      "title": "All 3 Sequences Paused \u2014 Client Review In Progress",
+      "detail": "All sequences are currently paused at client request while performance data is being reviewed. Zero active outreach is occurring as of this report period."
     },
     {
       "id": 5,
@@ -182,19 +182,19 @@
       "id": 1,
       "priority": "high",
       "action": "Schedule Client Data Review",
-      "detail": "Walk through open and click performance. 607 opens at strong rates deserve attention \u2014 discuss reactivation strategy for the paused referral sequences."
+      "detail": "Walk through open and click performance. 607 opens at strong rates deserve attention \u2014 discuss which sequences to prioritize when campaigns resume."
     },
     {
       "id": 2,
       "priority": "high",
       "action": "Prioritize Home Inspection Buyers Pipeline",
-      "detail": "585 contacts queued in the only active sequence. With 64.44% OR on initial sends, this is the highest-volume opportunity. Monitor as contacts flow through."
+      "detail": "585 contacts queued and ready to start \u2014 the largest untapped pipeline. When reactivated, this sequence should be the top priority given its volume and 64.44% open rate."
     },
     {
       "id": 3,
       "priority": "medium",
-      "action": "Apply Apollo Variant Learnings",
-      "detail": "The Apollo variant shows 4.15% click rate vs 0.75% on original. Analyze messaging and targeting differences. Apply what's working to other sequences."
+      "action": "Improve Messaging Using Best-Performing Email Approach",
+      "detail": "The Apollo-sourced referral contacts show a 4.15% click rate vs 0.75% on the original sequence. Review what's working in the Apollo variant and apply those messaging elements to improve engagement across other sequences."
     },
     {
       "id": 4,
@@ -204,7 +204,7 @@
     }
   ],
   "notes": {
-    "clientRequest": "2 of 3 sequences paused per client request \u2014 client reviewing performance data before reactivating.",
+    "clientRequest": "All 3 sequences paused per client request \u2014 client reviewing performance data before reactivating.",
     "bookingDisclaimer": "Bookings are not currently tracked in the MMai system. All booking metrics show 0 \u2014 this does not mean no meetings occurred, only that they are not tracked here.",
     "dataAvailability": "Open and click data from sequence performance screenshots. No LinkedIn/Prosp campaigns.",
     "ncNearRemoval": "3 Insurance/Industrial NcNear sequences (former business line) removed from this report.",
