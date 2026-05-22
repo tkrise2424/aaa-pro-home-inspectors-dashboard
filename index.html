@@ -66,89 +66,108 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f
 <div class="cadence-bar"><div class="cb-inner"><div class="cb-block"><div class="cb-label">Report Type</div><div class="cb-value" id="cbType">--</div></div><div class="cb-block"><div class="cb-label">Period</div><div class="cb-value" id="cbPeriod">--</div><div class="cb-sub" id="cbDays">--</div></div><div class="cb-block"><div class="cb-label">Baseline</div><div class="cb-value" id="cbBaselinePeriod">--</div><div class="cb-sub" id="cbBaselineDesc">--</div></div><div class="cb-block"><div class="cb-label">Next Report</div><div class="cb-value" id="cbNext">--</div></div></div></div>
 <div class="main" id="mainContent"><div class="error">Loading report data...</div></div>
 <script>
-fetch('report.json').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(function(d){
+fetch('report.json?v=4')
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+  .then(function(d){
 var r=d.report,ov=d.overview,cp=d.comparison,pd=cp.periodDelta,seqs=d.sequences,ins=d.insights,ns=d.nextSteps,notes=d.notes;
-document.getElementById('periodLabel').textContent=r.periodLabel+' -- #'+r.reportNumber;
-document.getElementById('badgeType').textContent=r.periodLabel;
-document.getElementById('badgeBaseline').textContent='Baseline: '+cp.baseline.period;
-document.getElementById('reportMeta').innerHTML='<strong>Generated:</strong> '+r.generated+'<br><strong>Dashboard:</strong> <a href="'+r.dashboardUrl+'" style="color:#fff;opacity:0.7">'+r.dashboardUrl+'</a>';
-document.getElementById('cbType').textContent=r.periodLabel;
-document.getElementById('cbPeriod').textContent=r.periodStart+' -- '+r.periodEnd;
-document.getElementById('cbDays').textContent=r.periodDays+'-Day Period';
-document.getElementById('cbBaselinePeriod').textContent=cp.baseline.period;
-document.getElementById('cbBaselineDesc').textContent='Report #1 Baseline';
-document.getElementById('cbNext').textContent=notes.nextReport;
-var h='';
 
-// Status banner - ALL PAUSED
-h+='<div class="alert-banner"><h3>ALL SEQUENCES PAUSED -- Pending Client Data Review</h3><p>'+notes.clientRequest+'</p></div>';
+document.getElementById('periodLabel').textContent = r.periodLabel + ' -- #' + r.reportNumber;
+document.getElementById('badgeType').textContent = r.periodLabel;
+document.getElementById('badgeBaseline').textContent = 'Baseline: ' + cp.baseline.period;
+document.getElementById('reportMeta').innerHTML =
+  '<strong>Generated:</strong> ' + r.generated +
+  '<br><strong>Dashboard:</strong> <a href="' + r.dashboardUrl + '" style="color:#fff;opacity:0.7">' + r.dashboardUrl + '</a>';
+
+document.getElementById('cbType').textContent = r.periodLabel;
+document.getElementById('cbPeriod').textContent = r.periodStart + ' -- ' + r.periodEnd;
+document.getElementById('cbDays').textContent = r.periodDays + '-Day Period';
+document.getElementById('cbBaselinePeriod').textContent = cp.baseline.period;
+document.getElementById('cbBaselineDesc').textContent = 'Report #1 Baseline';
+document.getElementById('cbNext').textContent = notes.nextReport;
+
+var h = '';
+
+// ALL PAUSED banner
+h += '<div class="alert-banner"><h3>ALL SEQUENCES PAUSED -- Pending Client Data Review</h3><p>' + notes.clientRequest + '</p></div>';
 
 // Pipeline Overview
-h+='<div class="section"><div class="section-title">Pipeline Overview</div><div class="kpi-grid">';
-h+=kc('Total Members',ov.totalMembers,'across 3 sequences');
-h+=kc('Completed',ov.completedMembers,'all steps finished');
-h+=kc('In Progress',ov.inProgressMembers,'mid-sequence');
-h+=kc('Not Started',ov.notStartedMembers,'queued in pipeline',ov.notStartedMembers>100);
-h+=kc('Total Sent',ov.totalSent,'across all sequences');
-h+=kc('Active Sequences',ov.activeSequences+' of '+ov.totalSequences,ov.pausedSequences+' paused');
-h+='</div></div>';
+h += '<div class="section"><div class="section-title">Pipeline Overview</div><div class="kpi-grid">';
+h += kc('Total Members', ov.totalMembers, 'across 3 sequences');
+h += kc('Completed', ov.completedMembers, 'all steps finished');
+h += kc('In Progress', ov.inProgressMembers, 'mid-sequence');
+h += kc('Not Started', ov.notStartedMembers, 'queued in pipeline', ov.notStartedMembers > 100);
+h += kc('Total Sent', ov.totalSent, 'across all sequences');
+h += kc('Active Sequences', ov.activeSequences + ' of ' + ov.totalSequences, ov.pausedSequences + ' paused');
+h += '</div></div>';
 
-// Engagement Overview
-h+='<div class="section"><div class="section-title">Engagement Overview</div><div class="kpi-grid">';
-h+=kc('Unique Opens',ov.totalUniqueOpens,'overall OR: '+ov.openRate+'%');
-h+=kc('Unique Clicks',ov.totalUniqueClicks,'overall CR: '+ov.clickRate+'%');
-h+=kc('Total Replies',ov.totalReplies,'across all sequences');
-h+=kc('Total Bounces',ov.totalBounces,'overall BR: '+ov.bounceRate+'%');
-h+=kc('Out of Office',ov.totalOOO,'auto-replies');
-h+=kc('Bookings',ov.totalBookings,'<span style="color:#e65100">not tracked in system</span>');
-h+='</div>';
-h+='<div class="note-callout" style="margin-top:12px"><strong>Booking Disclaimer:</strong> '+ov.bookingTrackingNote+'</div></div>';
+// Engagement
+h += '<div class="section"><div class="section-title">Engagement Overview</div><div class="kpi-grid">';
+h += kc('Unique Opens', ov.totalUniqueOpens, 'overall OR: ' + ov.openRate + '%');
+h += kc('Unique Clicks', ov.totalUniqueClicks, 'overall CR: ' + ov.clickRate + '%');
+h += kc('Total Replies', ov.totalReplies, 'across all sequences');
+h += kc('Total Bounces', ov.totalBounces, 'overall BR: ' + ov.bounceRate + '%');
+h += kc('Out of Office', ov.totalOOO, 'auto-replies');
+h += kc('Bookings', ov.totalBookings, '<span style="color:#e65100">not tracked in system</span>');
+h += '</div>';
+h += '<div class="note-callout" style="margin-top:12px"><strong>Booking Disclaimer:</strong> ' + ov.bookingTrackingNote + '</div></div>';
 
 // Period Comparison
-h+='<div class="section"><div class="section-title">Period-over-Period Comparison</div><div class="kpi-grid">';
-h+=cc('Completed Members',cp.current.completedMembers,cp.baseline.completedMembers,pd.completedMembers+' ('+pd.completedMembersPct+')');
-h+=cc('In Progress',cp.current.inProgress,cp.baseline.inProgress,pd.inProgressChange+' ('+pd.inProgressPct+')',true);
-h+=cc('Bounces',cp.current.bounces,cp.baseline.bounces,pd.bounces+' ('+pd.bouncesPct+')');
-h+=cc('Replies',cp.current.replies,cp.baseline.replies,pd.replies.toString());
-h+=cc('Active Sequences',cp.current.activeSequences,cp.baseline.activeSequences,pd.activeSequences,true);
-h+='</div></div>';
+h += '<div class="section"><div class="section-title">Period-over-Period Comparison</div><div class="kpi-grid">';
+h += cc('Completed Members', cp.current.completedMembers, cp.baseline.completedMembers, pd.completedMembers + ' (' + pd.completedMembersPct + ')');
+h += cc('In Progress', cp.current.inProgress, cp.baseline.inProgress, pd.inProgressChange + ' (' + pd.inProgressPct + ')', true);
+h += cc('Bounces', cp.current.bounces, cp.baseline.bounces, pd.bounces + ' (' + pd.bouncesPct + ')');
+h += cc('Replies', cp.current.replies, cp.baseline.replies, String(pd.replies));
+h += cc('Active Sequences', cp.current.activeSequences, cp.baseline.activeSequences, pd.activeSequences, true);
+h += '</div></div>';
 
 // Sequence table
-h+='<div class="section"><div class="section-title">Sequence Status & Performance</div>';
-h+='<div style="overflow-x:auto"><table class="seq-table"><thead><tr>';
-h+='<th>Sequence</th><th>Status</th><th>Members</th><th>Sent</th><th>Opens</th><th>OR</th><th>Clicks</th><th>CR</th><th>Bounces</th><th>BR</th></tr></thead><tbody>';
-seqs.forEach(function(s){
-h+='<tr>';
-h+='<td><div class="seq-name">'+s.name+'</div><div class="seq-note">'+s.note+'</div></td>';
-h+='<td><span class="s-paused">PAUSED</span></td>';
-h+='<td>'+s.members+'</td>';
-h+='<td>'+s.sent+'</td>';
-h+='<td class="'+(s.openRate>80?'m-good':'')+'">'+s.uniqueOpens+'</td>';
-h+='<td class="'+(s.openRate>80?'m-good':'')+'">'+s.openRate.toFixed(2)+'%</td>';
-h+='<td class="'+(s.clickRate>3?'m-good':'')+'">'+s.uniqueClicks+'</td>';
-h+='<td class="'+(s.clickRate>3?'m-good':'')+'">'+s.clickRate.toFixed(2)+'%</td>';
-h+='<td class="'+(s.bounceRate>5?'m-warn':'')+'">'+s.bounces+'</td>';
-h+='<td class="'+(s.bounceRate>5?'m-warn':'')+'">'+s.bounceRate.toFixed(2)+'%</td>';
-h+='</tr>';
+h += '<div class="section"><div class="section-title">Sequence Status & Performance</div>';
+h += '<div style="overflow-x:auto"><table class="seq-table"><thead><tr>';
+h += '<th>Sequence</th><th>Status</th><th>Members</th><th>Sent</th><th>Opens</th><th>OR</th><th>Clicks</th><th>CR</th><th>Bounces</th><th>BR</th></tr></thead><tbody>';
+seqs.forEach(function(s) {
+  h += '<tr>';
+  h += '<td><div class="seq-name">' + s.name + '</div><div class="seq-note">' + s.note + '</div></td>';
+  h += '<td><span class="s-paused">PAUSED</span></td>';
+  h += '<td>' + s.members + '</td>';
+  h += '<td>' + s.sent + '</td>';
+  h += '<td class="' + (s.openRate > 80 ? 'm-good' : '') + '">' + s.uniqueOpens + '</td>';
+  h += '<td class="' + (s.openRate > 80 ? 'm-good' : '') + '">' + s.openRate.toFixed(2) + '%</td>';
+  h += '<td class="' + (s.clickRate > 3 ? 'm-good' : '') + '">' + s.uniqueClicks + '</td>';
+  h += '<td class="' + (s.clickRate > 3 ? 'm-good' : '') + '">' + s.clickRate.toFixed(2) + '%</td>';
+  h += '<td class="' + (s.bounceRate > 5 ? 'm-warn' : '') + '">' + s.bounces + '</td>';
+  h += '<td class="' + (s.bounceRate > 5 ? 'm-warn' : '') + '">' + s.bounceRate.toFixed(2) + '%</td>';
+  h += '</tr>';
 });
-h+='</tbody></table></div>';
-h+='<div class="note-callout" style="margin-top:16px"><strong>Notes:</strong> '+notes.dataAvailability+'. '+notes.ncNearRemoval+'.</div></div>';
+h += '</tbody></table></div>';
+h += '<div class="note-callout" style="margin-top:16px"><strong>Notes:</strong> ' + notes.dataAvailability + '. ' + notes.ncNearRemoval + '.</div></div>';
 
 // Insights
-h+='<div class="section"><div class="section-title">Key Insights</div><div class="insights-grid">';
-var ico={warning:'WARN',info:'INFO',positive:'GOOD',neutral:'NOTE'};
-ins.forEach(function(i){h+='<div class="insight-card"><div class="ic-icon">['+ico[i.severity]+']</div><div class="ic-title">'+i.title+'</div><div class="ic-body">'+i.detail+'</div></div>';});
-h+='</div></div>';
+h += '<div class="section"><div class="section-title">Key Insights</div><div class="insights-grid">';
+var ico = {warning: 'WARN', info: 'INFO', positive: 'GOOD', neutral: 'NOTE'};
+ins.forEach(function(i) {
+  h += '<div class="insight-card"><div class="ic-icon">[' + ico[i.severity] + ']</div><div class="ic-title">' + i.title + '</div><div class="ic-body">' + i.detail + '</div></div>';
+});
+h += '</div></div>';
 
 // Next Steps
-h+='<div class="section"><div class="section-title">Recommended Next Steps</div><ul class="ns-list">';
-ns.forEach(function(n){h+='<li class="ns-item"><div class="ns-prio">'+n.id+'</div><div><div class="ns-action">'+n.action+'</div><div class="ns-detail">'+n.detail+'</div></div></li>';});
-h+='</ul></div>';
+h += '<div class="section"><div class="section-title">Recommended Next Steps</div><ul class="ns-list">';
+ns.forEach(function(n) {
+  h += '<li class="ns-item"><div class="ns-prio">' + n.id + '</div><div><div class="ns-action">' + n.action + '</div><div class="ns-detail">' + n.detail + '</div></div></li>';
+});
+h += '</ul></div>';
 
-document.getElementById('mainContent').innerHTML=h;
-}).catch(function(e){document.getElementById('mainContent').innerHTML='<div class="error">Could not load report data: '+e.message+'</div>'});
-function kc(label,value,sub,warn){return '<div class="kpi-card"><div class="kpi-label">'+label+'</div><div class="kpi-value'+(warn?' m-warn':'')+'">'+value+'</div><div class="kpi-sub">'+sub+'</div></div>';}
-function cc(label,curr,base,delta,neg){var dc=neg||(typeof delta==='string'&&delta.indexOf('-')===0)?'kpi-d-neg':'kpi-d-pos';return '<div class="kpi-card"><div class="kpi-label">'+label+'</div><div class="kpi-value" style="font-size:1.4rem">'+curr+'</div><div class="kpi-sub">Baseline: '+base+'</div><div class="kpi-delta '+dc+'">d '+delta+'</div></div>';}
+document.getElementById('mainContent').innerHTML = h;
+}).catch(function(e){
+  document.getElementById('mainContent').innerHTML = '<div class="error">Could not load report data: ' + e.message + '</div>';
+});
+
+function kc(label, value, sub, warn) {
+  return '<div class="kpi-card"><div class="kpi-label">' + label + '</div><div class="kpi-value' + (warn ? ' m-warn' : '') + '">' + value + '</div><div class="kpi-sub">' + sub + '</div></div>';
+}
+function cc(label, curr, base, delta, neg) {
+  var dc = neg || (typeof delta === 'string' && delta.indexOf('-') === 0) ? 'kpi-d-neg' : 'kpi-d-pos';
+  return '<div class="kpi-card"><div class="kpi-label">' + label + '</div><div class="kpi-value" style="font-size:1.4rem">' + curr + '</div><div class="kpi-sub">Baseline: ' + base + '</div><div class="kpi-delta ' + dc + '">d ' + delta + '</div></div>';
+}
 </script>
 </body>
 </html>
