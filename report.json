@@ -1,0 +1,238 @@
+{
+  "report": {
+    "client": "AAA Pro Home Inspectors",
+    "companyId": "amdcypjqmfvobos9",
+    "reportNumber": 2,
+    "periodLabel": "30-Day Interim Report",
+    "periodStart": "2026-04-23",
+    "periodEnd": "2026-05-22",
+    "periodDays": 30,
+    "generated": "2026-05-22T18:32:00-04:00",
+    "baselinePeriod": "2025-11-26 to 2026-04-22 (Report #1)",
+    "status": "ALL CAMPAIGNS PAUSED — PENDING CLIENT DATA REVIEW",
+    "prosp": false,
+    "dashboardUrl": "http://aaa-pro-home-inspectors.mercenarymarketing.ai/"
+  },
+  "overview": {
+    "totalSequences": 6,
+    "activeSequences": 0,
+    "pausedSequences": 6,
+    "totalMembers": 1715,
+    "completedMembers": 759,
+    "inProgressMembers": 371,
+    "notStartedMembers": 585,
+    "totalBounces": 39,
+    "totalReplies": 11,
+    "totalBookings": 0,
+    "bounceRate": 2.27,
+    "summary": "All 6 sequences are currently paused at client request. The client has not yet reviewed campaign performance data. No LinkedIn/Prosp data is tracked for this account. Open and click tracking is not available for this client period."
+  },
+  "comparison": {
+    "baseline": {
+      "period": "11/26/25 – 4/22/26",
+      "contactsAdded": 851,
+      "outreachSent": 626,
+      "sequenceTriggers": 626,
+      "completedMembers": 107,
+      "inProgress": 159,
+      "bounces": 22,
+      "replies": 0,
+      "bookings": 0,
+      "activeSequences": 3,
+      "emailOpens": null,
+      "emailClicks": null
+    },
+    "current": {
+      "period": "4/23/26 – 5/22/26",
+      "completedMembers": 759,
+      "inProgress": 371,
+      "notStarted": 585,
+      "bounces": 39,
+      "replies": 11,
+      "bookings": 0,
+      "activeSequences": 0,
+      "emailOpens": null,
+      "emailClicks": null
+    },
+    "periodDelta": {
+      "completedMembers": 652,
+      "completedMembersPct": "+609.3%",
+      "inProgressChange": "+212",
+      "inProgressPct": "+133.3%",
+      "bounces": 17,
+      "bouncesPct": "+77.3%",
+      "replies": 11,
+      "bookings": 0,
+      "activeSequences": -3
+    }
+  },
+  "sequences": [
+    {
+      "name": "Real Estate Agent Referral Sequence - Apollo",
+      "id": "9063a862-a023-490b-a243-826d9009a750",
+      "status": "paused",
+      "steps": 3,
+      "members": 87,
+      "completed": 70,
+      "inProgress": 17,
+      "bounces": 4,
+      "replies": 0,
+      "bookings": 0,
+      "executedSteps": 241,
+      "created": "2026-03-30",
+      "note": "Apollo-sourced version of the agent referral sequence"
+    },
+    {
+      "name": "Real Estate Agent Referral Sequence",
+      "id": "c01752ec-6f8d-4b0e-a244-3a13477e8e45",
+      "status": "paused",
+      "steps": 3,
+      "members": 99,
+      "completed": 72,
+      "inProgress": 27,
+      "bounces": 4,
+      "replies": 0,
+      "bookings": 0,
+      "executedSteps": 266,
+      "created": "2026-03-19",
+      "note": "Original real estate agent referral outreach"
+    },
+    {
+      "name": "Home Inspection Buyers Sequence",
+      "id": "b6d0c8cb-c0c1-4168-8d61-0475dfd8780f",
+      "status": "paused",
+      "steps": 3,
+      "members": 665,
+      "completed": 39,
+      "inProgress": 41,
+      "notStarted": 585,
+      "bounces": 14,
+      "replies": 0,
+      "bookings": 0,
+      "executedSteps": 225,
+      "created": "2026-03-19",
+      "note": "⚠️ 585 contacts loaded but not yet started — largest queue by far"
+    },
+    {
+      "name": "Loisville IR-Jack NcNear-Insurance Account Managers (+Prosp LI)-Sequence 1-0126 (New)",
+      "id": "5df3a9bf-03c4-4fa4-a7a1-8baee0b8c623",
+      "status": "paused",
+      "steps": 4,
+      "members": 489,
+      "completed": 222,
+      "inProgress": 267,
+      "bounces": 5,
+      "replies": 0,
+      "bookings": 0,
+      "executedSteps": 1292,
+      "created": "2026-01-23",
+      "note": "Active replacement for the x-prefixed Insurance sequence — highest execution volume"
+    },
+    {
+      "name": "xLoisville IR-Jack NcNear-Insurance Account Managers (+Prosp LI)-Sequence 1-0126",
+      "id": "b41ae3bd-e04b-44db-bade-2ca659f86cdc",
+      "status": "paused",
+      "steps": 4,
+      "members": 167,
+      "completed": 159,
+      "inProgress": 8,
+      "bounces": 10,
+      "replies": 5,
+      "bookings": 0,
+      "executedSteps": 632,
+      "created": "2025-11-19",
+      "note": "🔄 Superseded by (New) version — winding down, 5 replies received"
+    },
+    {
+      "name": "xLoisville IR-Jack NcNear-Industrial Prospects-Sequence 1-1025",
+      "id": "d4b3ed5e-c2e5-48aa-afda-ce214d9ecd5f",
+      "status": "paused",
+      "steps": 6,
+      "members": 208,
+      "completed": 197,
+      "inProgress": 11,
+      "bounces": 2,
+      "replies": 6,
+      "bookings": 0,
+      "executedSteps": 815,
+      "created": "2025-09-22",
+      "note": "🔄 Oldest sequence — nearly complete, 6 replies received (most of any sequence)"
+    }
+  ],
+  "insights": [
+    {
+      "id": 1,
+      "severity": "warning",
+      "title": "All Campaigns Paused — No Active Outreach",
+      "detail": "All 6 sequences are currently in paused status at client request. Zero active outreach is occurring as of this report period. The client has indicated they need time to review existing performance data before resuming."
+    },
+    {
+      "id": 2,
+      "severity": "info",
+      "title": "Significant Member Pipeline Growth",
+      "detail": "Total members grew from ~266 (107 completed + 159 in-progress) at baseline to 1,715. 652 additional members completed their sequences and 212 more are in-progress during this 30-day period. The Home Inspection Buyers sequence alone holds 585 not-yet-started contacts."
+    },
+    {
+      "id": 3,
+      "severity": "positive",
+      "title": "11 New Replies — First Engagement Signals",
+      "detail": "Baseline had 0 replies — this period produced 11 total replies (5 from the old Insurance sequence, 6 from the Industrial Prospects sequence). While modest, these represent the first direct prospect engagement."
+    },
+    {
+      "id": 4,
+      "severity": "warning",
+      "title": "Bounce Rate Remains Elevated",
+      "detail": "17 new bounces this period (39 total vs 22 baseline). At 2.27% overall bounce rate, this is within acceptable range but warrants monitoring — the Home Inspection Buyers sequence has the highest bounce count (14)."
+    },
+    {
+      "id": 5,
+      "severity": "info",
+      "title": "Sequence Versioning — Two Duplicates Identified",
+      "detail": "The Insurance Account Managers sequence exists in both old (x-prefixed) and new versions. Combined they have 656 members, 381 completed, with 5 total replies. The old Industrial sequence (6 replies) is also winding down with 95% completion."
+    },
+    {
+      "id": 6,
+      "severity": "neutral",
+      "title": "No Bookings or Meetings",
+      "detail": "Across all sequences and all time, zero bookings have been generated. Combined with 0 meetings tracked and no LinkedIn/Prosp data, the pipeline has not yet produced a qualified lead conversation."
+    }
+  ],
+  "nextSteps": [
+    {
+      "id": 1,
+      "priority": "high",
+      "action": "Client Data Review",
+      "detail": "AAA Pro Home Inspectors needs to review the campaign performance data before any sequences can be reactivated. Schedule a review call to walk through the 11 replies and discuss which sequences to prioritize."
+    },
+    {
+      "id": 2,
+      "priority": "high",
+      "action": "Review 11 Unanswered Replies",
+      "detail": "11 replies have been received but not yet reviewed by the client. These are spread across the old Insurance (5) and Industrial (6) sequences. Review these replies manually to identify any warm leads."
+    },
+    {
+      "id": 3,
+      "priority": "medium",
+      "action": "Clean Up Superseded Sequences",
+      "detail": "The x-prefixed Insurance and Industrial sequences appear to be legacy versions. Once the (New) Insurance sequence is validated, consider archiving the old versions to reduce clutter."
+    },
+    {
+      "id": 4,
+      "priority": "medium",
+      "action": "Resolve Home Inspection Buyers Queue",
+      "detail": "585 contacts are loaded but not started in the Home Inspection Buyers sequence. When campaigns resume, this sequence should be prioritized — it represents the largest untapped pipeline."
+    },
+    {
+      "id": 5,
+      "priority": "low",
+      "action": "Enable Open & Click Tracking",
+      "detail": "Open and click tracking data is not available for this client. If email engagement metrics are desired for future reports, confirm tracking is enabled at the sequence level."
+    }
+  ],
+  "notes": {
+    "clientRequest": "Campaigns paused per client request — client has not reviewed current data yet.",
+    "dataAvailability": "Open and click tracking not available. No LinkedIn/Prosp campaigns. Meeting data tracked client-side.",
+    "nextReport": "June 1, 2026 (Monday)",
+    "dashboardUrl": "http://aaa-pro-home-inspectors.mercenarymarketing.ai/"
+  }
+}
