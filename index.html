@@ -27,8 +27,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f
 .main{max-width:1440px;margin:0 auto;padding:32px 40px 60px}
 .section{margin-bottom:40px}
 .section-title{font-size:1.3rem;font-weight:800;color:#2e7d32;margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:2px solid #e1e4e8}
-.alert-banner{background:#fff3e0;border-left:4px solid #e53935;border-radius:8px;padding:18px 24px;margin-bottom:24px}
-.alert-banner h3{color:#c62828;font-size:1rem;margin-bottom:4px}
+.alert-banner{background:#fff3e0;border-left:4px solid #ff9800;border-radius:8px;padding:18px 24px;margin-bottom:24px}
+.alert-banner h3{color:#e65100;font-size:1rem;margin-bottom:4px}
 .alert-banner p{color:#5a6275;font-size:0.85rem}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
 .kpi-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
@@ -43,6 +43,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f
 .seq-table td{padding:12px 14px;border-bottom:1px solid #f0f2f6;font-size:0.9rem}
 .seq-name{font-weight:700;color:#1a1f2e;max-width:320px}
 .seq-note{font-size:0.78rem;color:#8892a4}
+.s-active{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.7rem;font-weight:700;text-transform:uppercase;background:#e8f5e9;color:#2e7d32}
 .s-paused{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.7rem;font-weight:700;text-transform:uppercase;background:#ffebee;color:#c62828}
 .m-good{color:#43a047;font-weight:700}
 .m-warn{color:#e53935;font-weight:700}
@@ -79,35 +80,89 @@ document.getElementById('cbBaselinePeriod').textContent=cp.baseline.period;
 document.getElementById('cbBaselineDesc').textContent='Report #1 Baseline';
 document.getElementById('cbNext').textContent=notes.nextReport;
 var h='';
-h+='<div class="alert-banner"><h3>[PAUSED] All Campaigns Paused</h3><p>All 6 sequences are paused at client request. '+notes.clientRequest+' Zero active outreach is occurring. No LinkedIn/Prosp campaigns are configured.</p></div>';
+
+// Status banner
+h+='<div class="alert-banner"><h3>1 ACTIVE | 2 PAUSED -- Pending Client Data Review</h3><p>'+notes.clientRequest+'</p></div>';
+
+// KPI Overview
 h+='<div class="section"><div class="section-title">Pipeline Overview</div><div class="kpi-grid">';
-h+=kc('Total Members',ov.totalMembers,'across all sequences');
-h+=kc('Completed',ov.completedMembers,'finished all steps');
+h+=kc('Total Members',ov.totalMembers,'across 3 sequences');
+h+=kc('Completed',ov.completedMembers,'all steps finished');
 h+=kc('In Progress',ov.inProgressMembers,'mid-sequence');
-h+=kc('Not Started',ov.notStartedMembers,'queued, not triggered',ov.notStartedMembers>100);
-h+=kc('Total Replies',ov.totalReplies,'all-time');
-h+=kc('Bounce Rate',ov.bounceRate+'%',ov.totalBounces+' total bounces',ov.bounceRate>5);
+h+=kc('Not Started',ov.notStartedMembers,'queued in pipeline',ov.notStartedMembers>100);
+h+=kc('Total Sent',ov.totalSent,'across all sequences');
 h+=kc('Active Sequences',ov.activeSequences+' of '+ov.totalSequences,ov.pausedSequences+' paused');
 h+='</div></div>';
+
+// Engagement Overview
+h+='<div class="section"><div class="section-title">Engagement Overview</div><div class="kpi-grid">';
+h+=kc('Unique Opens',ov.totalUniqueOpens,'overall OR: '+ov.openRate+'%');
+h+=kc('Unique Clicks',ov.totalUniqueClicks,'overall CR: '+ov.clickRate+'%');
+h+=kc('Total Replies',ov.totalReplies,'across all sequences');
+h+=kc('Total Bounces',ov.totalBounces,'overall BR: '+ov.bounceRate+'%');
+h+=kc('Out of Office',ov.totalOOO,'auto-replies');
+h+=kc('Bookings',ov.totalBookings,'<span style="color:#e65100">not tracked in system</span>');
+h+='</div>';
+h+='<div class="note-callout" style="margin-top:12px"><strong>Booking Disclaimer:</strong> '+ov.bookingTrackingNote+'</div></div>';
+
+// Period Comparison
 h+='<div class="section"><div class="section-title">Period-over-Period Comparison</div><div class="kpi-grid">';
 h+=cc('Completed Members',cp.current.completedMembers,cp.baseline.completedMembers,pd.completedMembers+' ('+pd.completedMembersPct+')');
-h+=cc('In Progress',cp.current.inProgress,cp.baseline.inProgress,pd.inProgressChange+' ('+pd.inProgressPct+')');
-h+=cc('Bounces',cp.current.bounces,cp.baseline.bounces,'+'+pd.bounces+' ('+pd.bouncesPct+')',true);
-h+=cc('Replies',cp.current.replies,cp.baseline.replies,'+'+pd.replies);
-h+=cc('Active Sequences',cp.current.activeSequences,cp.baseline.activeSequences,pd.activeSequences);
+h+=cc('In Progress',cp.current.inProgress,cp.baseline.inProgress,pd.inProgressChange+' ('+pd.inProgressPct+')',true);
+h+=cc('Bounces',cp.current.bounces,cp.baseline.bounces,pd.bounces+' ('+pd.bouncesPct+')');
+h+=cc('Replies',cp.current.replies,cp.baseline.replies,pd.replies.toString());
+h+=cc('Active Sequences',cp.current.activeSequences,cp.baseline.activeSequences,pd.activeSequences,true);
 h+='</div></div>';
-h+='<div class="section"><div class="section-title">Sequence Status</div><div style="overflow-x:auto"><table class="seq-table"><thead><tr><th>Sequence</th><th>Steps</th><th>Status</th><th>Members</th><th>Completed</th><th>In Prog</th><th>Queued</th><th>Bounces</th><th>Replies</th></tr></thead><tbody>';
-seqs.forEach(function(s){var st=s.name.indexOf('x')===0?'PAUSED (Legacy)':'PAUSED';
-h+='<tr><td><div class="seq-name">'+s.name+'</div><div class="seq-note">'+(s.note||'')+'</div></td><td>'+s.steps+'</td><td><span class="s-paused">'+st+'</span></td><td>'+s.members+'</td><td>'+s.completed+'</td><td>'+s.inProgress+'</td><td class="'+((s.notStarted||0)>100?'m-warn':'')+'">'+(s.notStarted||0)+'</td><td class="'+(s.bounces>5?'m-warn':'')+'">'+s.bounces+'</td><td class="'+(s.replies>0?'m-good':'')+'">'+s.replies+'</td></tr>';});
-h+='</tbody></table></div><div class="note-callout" style="margin-top:16px"><strong>Notes:</strong> Open and click tracking is not available for this client. The two x-prefixed sequences are legacy versions superseded by newer replacements. The Home Inspection Buyers sequence holds <strong>585 not-yet-started contacts</strong> -- the largest untapped pipeline.</div></div>';
+
+// Sequence table with engagement data
+h+='<div class="section"><div class="section-title">Sequence Status & Performance</div>';
+h+='<div style="overflow-x:auto"><table class="seq-table"><thead><tr>';
+h+='<th>Sequence</th><th>Status</th><th>Members</th><th>Sent</th><th>Opens</th><th>OR</th><th>Clicks</th><th>CR</th><th>Bounces</th><th>BR</th></tr></thead><tbody>';
+seqs.forEach(function(s){
+var sc=s.status==='active'?'s-active':'s-paused';
+var st=s.status==='active'?'ACTIVE':'PAUSED';
+h+='<tr>';
+h+='<td><div class="seq-name">'+s.name+'</div><div class="seq-note">'+s.note+'</div></td>';
+h+='<td><span class="'+sc+'">'+st+'</span></td>';
+h+='<td>'+s.members+'</td>';
+h+='<td>'+s.sent+'</td>';
+h+='<td class="'+(s.openRate>80?'m-good':'')+'">'+s.uniqueOpens+'</td>';
+h+='<td class="'+(s.openRate>80?'m-good':'')+'">'+s.openRate.toFixed(2)+'%</td>';
+h+='<td class="'+(s.clickRate>3?'m-good':'')+'">'+s.uniqueClicks+'</td>';
+h+='<td class="'+(s.clickRate>3?'m-good':'')+'">'+s.clickRate.toFixed(2)+'%</td>';
+h+='<td class="'+(s.bounceRate>5?'m-warn':'')+'">'+s.bounces+'</td>';
+h+='<td class="'+(s.bounceRate>5?'m-warn':'')+'">'+s.bounceRate.toFixed(2)+'%</td>';
+h+='</tr>';
+});
+h+='</tbody></table></div>';
+
+// Additional sequence stats
+h+='<div class="kpi-grid" style="margin-top:16px">';
+seqs.forEach(function(s){
+var sc=s.status==='active'?' (Active)':' (Paused)';
+h+='<div class="kpi-card">';
+h+='<div class="kpi-label">'+s.name.split(' ').slice(0,3).join(' ')+sc+'</div>';
+h+='<div style="font-size:0.82rem;color:#5a6275;margin-top:8px;line-height:1.7">';
+h+='Completed: <strong>'+s.completed+'</strong><br>';
+h+='In Progress: <strong>'+s.inProgress+'</strong><br>';
+h+='Not Started: <strong>'+(s.notStarted||0)+'</strong><br>';
+h+='OOO: <strong>'+s.ooo+'</strong>';
+h+='</div></div>';
+});
+h+='</div>';
+h+='<div class="note-callout" style="margin-top:16px"><strong>Notes:</strong> '+notes.dataAvailability+'. '+notes.ncNearRemoval+'.</div></div>';
+
+// Insights
 h+='<div class="section"><div class="section-title">Key Insights</div><div class="insights-grid">';
 var ico={warning:'WARN',info:'INFO',positive:'GOOD',neutral:'NOTE'};
 ins.forEach(function(i){h+='<div class="insight-card"><div class="ic-icon">['+ico[i.severity]+']</div><div class="ic-title">'+i.title+'</div><div class="ic-body">'+i.detail+'</div></div>';});
 h+='</div></div>';
-h+='<div class="section"><div class="section-title">LinkedIn / Prosp</div><div style="background:#fff;padding:20px;border-radius:10px"><p style="color:#8892a4">'+(r.prosp?'Active LinkedIn campaigns.':'No LinkedIn/Prosp campaigns configured for this client.')+'</p></div></div>';
+
+// Next Steps
 h+='<div class="section"><div class="section-title">Recommended Next Steps</div><ul class="ns-list">';
 ns.forEach(function(n){h+='<li class="ns-item"><div class="ns-prio">'+n.id+'</div><div><div class="ns-action">'+n.action+'</div><div class="ns-detail">'+n.detail+'</div></div></li>';});
 h+='</ul></div>';
+
 document.getElementById('mainContent').innerHTML=h;
 }).catch(function(e){document.getElementById('mainContent').innerHTML='<div class="error">Could not load report data: '+e.message+'</div>'});
 function kc(label,value,sub,warn){return '<div class="kpi-card"><div class="kpi-label">'+label+'</div><div class="kpi-value'+(warn?' m-warn':'')+'">'+value+'</div><div class="kpi-sub">'+sub+'</div></div>';}
