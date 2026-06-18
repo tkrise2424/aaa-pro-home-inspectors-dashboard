@@ -1,9 +1,9 @@
 {
-  "client": "AAA Pro Home Inspectors",
   "reportNumber": 2,
-  "period": "4/23/2026 – 6/17/2026",
-  "periodDays": 56,
-  "generated": "6/17/2026",
+  "client": "AAA Pro Home Inspectors",
+  "period": "4/23/2026 \u2013 6/18/2026",
+  "periodDays": 57,
+  "generated": "6/18/2026",
   "status": "ALL SEQUENCES PAUSED",
   "sequences": 3,
   "activeSequences": 0,
