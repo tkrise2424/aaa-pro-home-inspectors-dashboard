@@ -70,7 +70,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f
 fetch('report.json?v=5')
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
   .then(function(d){
-var r=d.report,ov=d.overview,cp=d.comparison,pd=cp.periodDelta,seqs=d.sequences,ins=d.insights,ns=d.nextSteps,notes=d.notes;
+var r=d.report,ov=d.overview,cp=d.comparison,pd=cp.periodDelta,seqs=d.sequences,ins=d.insights,ns=d.nextSteps,mb=d.matchback,notes=d.notes;
 
 document.getElementById('periodLabel').textContent = r.periodLabel + ' -- #' + r.reportNumber;
 document.getElementById('badgeType').textContent = r.periodLabel;
@@ -87,9 +87,6 @@ document.getElementById('cbBaselineDesc').textContent = 'Report #1 Baseline';
 document.getElementById('cbNext').textContent = notes.nextReport;
 
 var h = '';
-
-// ALL PAUSED banner
-h += '<div class="alert-banner"><h3>ALL SEQUENCES PAUSED -- Pending Client Data Review</h3><p>' + notes.clientRequest + '</p></div>';
 
 // Pipeline Overview
 h += '<div class="section"><div class="section-title">Pipeline Overview</div><div class="kpi-grid">';
@@ -150,12 +147,25 @@ ins.forEach(function(i) {
 });
 h += '</div></div>';
 
-// Next Steps
-h += '<div class="section"><div class="section-title">Recommended Next Steps</div><ul class="ns-list">';
-ns.forEach(function(n) {
-  h += '<li class="ns-item"><div class="ns-prio">' + n.priority + '</div><div><div class="ns-action">' + n.action + '</div><div class="ns-detail">' + n.detail + '</div></div></li>';
-});
-h += '</ul></div>';
+// Matchback
+if (mb) {
+  h += '<div class="section"><div class="section-title">Inspection Matchback</div>';
+  h += '<div class="alert-banner" style="background:#e8f5e9;border-left:4px solid #43a047"><h3 style="color:#2e7d32">' + mb.matchRate + ' of ' + mb.inspectionsTotal + ' inspections traced to sequences</h3><p>' + mb.verdict + '</p></div>';
+  h += '<div class="kpi-grid">';
+  h += kc('Inspections Checked', mb.inspectionsTotal, mb.inspectionEmails + ' unique emails');
+  h += kc('Inspection Email Type', mb.inspectionEmailType, '');
+  h += kc('Sequences Checked', mb.sequencesChecked, mb.sequencesTotalContacts + ' total contacts');
+  h += kc('Match Rate', mb.matchRate, '');
+  h += '</div>';
+  h += '<div style="margin-top:20px"><strong>Sequence Breakdown</strong></div>';
+  h += '<div style="overflow-x:auto"><table class="seq-table"><thead><tr><th>Sequence</th><th>Members</th><th>Target Audience</th><th>Contact Type</th></tr></thead><tbody>';
+  mb.breakdown.forEach(function(b) {
+    h += '<tr><td>' + b.sequence + '</td><td>' + b.members + '</td><td>' + b.target + '</td><td>' + b.contactType + '</td></tr>';
+  });
+  h += '</tbody></table></div>';
+  h += '<div class="note-callout" style="margin-top:16px"><strong>Key Finding:</strong> ' + mb.keyFinding + '</div>';
+  h += '</div>';
+}
 
 document.getElementById('mainContent').innerHTML = h;
 }).catch(function(e){
