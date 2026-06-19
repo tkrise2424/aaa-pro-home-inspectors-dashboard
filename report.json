@@ -3,13 +3,13 @@
     "client": "AAA Pro Home Inspectors",
     "companyId": "amdcypjqmfvobos9",
     "reportNumber": 2,
-    "periodLabel": "56-Day Extended Report",
+    "periodLabel": "Final Extended Report",
     "periodStart": "4/23/2026",
     "periodEnd": "6/18/2026",
     "periodDays": 57,
     "generated": "6/18/2026",
     "baselinePeriod": "11/26/2025 \u2013 4/22/2026 (Report #1)",
-    "status": "ALL SEQUENCES PAUSED \u2014 NO CHANGE SINCE MAY 22. PENDING CLIENT DATA REVIEW.",
+    "status": "FINAL REPORT \u2014 ALL SEQUENCES PAUSED",
     "prosp": false,
     "dashboardUrl": "http://aaa-pro-home-inspectors.mercenarymarketing.ai/"
   },
@@ -70,8 +70,58 @@
       "replies": 0,
       "bookings": 0,
       "activeSequences": -3,
-      "note": "Deltas are vs Report #1 baseline (11/26/2025 \u2013 4/22/2026). All 3 sequences paused since May 22 \u2014 no change in the 27 days since."
+      "note": "Deltas are vs Report #1 baseline. All 3 sequences paused since May 22."
     }
+  },
+  "matchback": {
+    "title": "Inspection Matchback Analysis",
+    "summary": "A matchback was performed comparing 188 actual home inspections against all 6 AAA Pro sequences (1,715 total contacts). Result: zero matches.",
+    "inspectionsTotal": 188,
+    "inspectionEmails": 147,
+    "inspectionEmailType": "Personal (Gmail, Yahoo, AOL, Outlook, iCloud)",
+    "sequencesChecked": 6,
+    "sequencesTotalContacts": 1715,
+    "matchRate": "0.0%",
+    "verdict": "The sequences have never sent outreach to anyone on the inspection list. These clients came in through a different door entirely \u2014 agents, referrals, search, walk-ins, etc.",
+    "breakdown": [
+      {
+        "sequence": "Home Inspection Buyers Sequence",
+        "members": 665,
+        "target": "Home buyers",
+        "contactType": "Business/corporate (LinkedIn-sourced: @dell.com, @oriusa.com, @secc.org, etc.)"
+      },
+      {
+        "sequence": "Real Estate Agent Referral Sequence",
+        "members": 99,
+        "target": "Real estate agents",
+        "contactType": "Professional"
+      },
+      {
+        "sequence": "Real Estate Agent Referral - Apollo",
+        "members": 87,
+        "target": "Real estate agents",
+        "contactType": "Professional"
+      },
+      {
+        "sequence": "Insurance Account Managers (New)",
+        "members": 489,
+        "target": "Insurance professionals",
+        "contactType": "Professional"
+      },
+      {
+        "sequence": "Insurance Account Managers x",
+        "members": 167,
+        "target": "Insurance professionals",
+        "contactType": "Professional"
+      },
+      {
+        "sequence": "Industrial Prospects",
+        "members": 208,
+        "target": "Industrial/commercial",
+        "contactType": "Professional"
+      }
+    ],
+    "keyFinding": "The Home Inspection Buyers Sequence \u2014 the only one targeting actual home buyers \u2014 is populated with B2B/professional contacts (LinkedIn-sourced, company emails). Meanwhile the inspection list is 147 unique personal emails. These are fundamentally different populations. The sequence list came from a B2B/professional source (likely Apollo or LinkedIn scraping), while actual inspection clients are real consumers who found AAA through other channels."
   },
   "sequences": [
     {
@@ -280,14 +330,14 @@
   "insights": [
     {
       "id": 1,
-      "severity": "warning",
-      "title": "No Activity in 27 Days \u2014 All Sequences Still Paused",
-      "detail": "Since Report #002 (May 22), no new sends, opens, clicks, or replies have occurred across any of the 3 sequences. All remain paused. The 585-contact Home Inspection Buyers pipeline remains completely untapped."
+      "severity": "info",
+      "title": "Matchback: Zero Inspection Attribution from Sequences",
+      "detail": "188 actual inspections were matched against all 6 sequences (1,715 contacts). Result: 0 matches. The sequence contacts (B2B/professional, company emails) and inspection clients (personal emails \u2014 Gmail, Yahoo, AOL) are fundamentally different populations. These clients came through agents, referrals, search, and walk-ins."
     },
     {
       "id": 2,
       "severity": "positive",
-      "title": "Exceptional Open Rates Preserved",
+      "title": "Exceptional Open Rates Across All Sequences",
       "detail": "607 unique opens across 732 total sends. Original referral leads at 91.73%, Apollo variant at 90.46%, and Home Inspection Buyers at 64.44% \u2014 all well above industry benchmarks."
     },
     {
@@ -300,59 +350,29 @@
       "id": 4,
       "severity": "info",
       "title": "SMS Step Shows Delivery Issues",
-      "detail": "Home Inspection Buyers Step 1 (SMS): 80 executed, 21 failed (26.25% failure rate). 33 SMS sent but 0 recorded as delivered. SMS integration may need troubleshooting before reactivation."
+      "detail": "Home Inspection Buyers Step 1 (SMS): 80 executed, 21 failed (26.25% failure rate). 33 SMS sent but 0 recorded as delivered. SMS integration may need troubleshooting if reactivated."
     },
     {
       "id": 5,
-      "severity": "warning",
+      "severity": "info",
       "title": "585 Contacts Queued \u2014 Largest Untapped Pipeline",
-      "detail": "665 total members in Home Inspection Buyers with 585 not yet started \u2014 88% of the sequence is untouched. This represents the single largest growth opportunity across all AAA Pro sequences."
+      "detail": "665 total members in Home Inspection Buyers with 585 not yet started \u2014 88% of the sequence is untouched. However, matchback shows these are B2B contacts, not consumer home buyers."
     },
     {
       "id": 6,
       "severity": "info",
       "title": "Zero Replies Across All Sequences",
-      "detail": "Despite strong open rates, no replies have been received across any sequence. Consider A/B testing subject lines or call-to-action language to drive engagement beyond opens."
+      "detail": "Despite strong open rates, no replies have been received across any sequence. Combined with the matchback findings, this suggests the contact lists may not align with the target audience."
     }
   ],
-  "nextSteps": [
-    {
-      "priority": "critical",
-      "action": "Schedule client data review to discuss reactivation priorities",
-      "detail": "Sequences have been paused for 27+ days. The 585-contact pipeline is aging. Client input is needed on when and how to resume."
-    },
-    {
-      "priority": "high",
-      "action": "Prioritize the 585-contact Home Inspection Buyers pipeline",
-      "detail": "This is the largest untapped audience. Even a conservative 2% conversion rate would yield ~12 new inspection bookings."
-    },
-    {
-      "priority": "high",
-      "action": "Investigate SMS delivery issues",
-      "detail": "Step 1 SMS shows 0% delivery rate (33 sent, 0 delivered) and 26% failure rate. The SMS integration (Twilio +15024311852) needs troubleshooting."
-    },
-    {
-      "priority": "medium",
-      "action": "Apply Apollo variant's winning messaging to other sequences",
-      "detail": "Apollo's Email 1 and 2 drive 4.6-4.8% click rates. Apply this messaging approach to the original referral sequence."
-    },
-    {
-      "priority": "medium",
-      "action": "A/B test reply-driving CTAs",
-      "detail": "Zero replies despite 82.9% open rate suggests the current copy isn't prompting responses. Test direct questions or time-sensitive offers."
-    },
-    {
-      "priority": "low",
-      "action": "Integrate booking tracking (Calendly)",
-      "detail": "Bookings are not tracked in MMai. A Calendly integration would close the loop on attribution."
-    }
-  ],
+  "nextSteps": [],
   "notes": {
-    "clientRequest": "All 3 sequences paused per client request \u2014 client reviewing performance data before reactivating.",
+    "clientRequest": "All 3 sequences paused per client request. This is the final report for this engagement.",
     "bookingDisclaimer": "Bookings are not currently tracked in the MMai system. All booking metrics show 0 \u2014 this does not mean no meetings occurred, only that they are not tracked here.",
     "dataAvailability": "Fresh step-level metrics pulled from platform on June 18, 2026. No LinkedIn/Prosp campaigns.",
     "ncNearRemoval": "3 Insurance/Industrial NcNear sequences (former business line) excluded from this report.",
-    "nextReport": "June 29, 2026 (Monday)",
+    "matchbackNote": "Matchback performed June 2026: 188 inspections vs 1,715 sequence contacts across all 6 sequences. Zero matches. Inspection clients are personal emails (Gmail, Yahoo, AOL, etc.) while sequence contacts are B2B/professional (LinkedIn-sourced, company emails).",
+    "nextReport": "N/A \u2014 Final Report",
     "dashboardUrl": "http://aaa-pro-home-inspectors.mercenarymarketing.ai/"
   }
 }
